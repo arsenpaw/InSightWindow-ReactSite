@@ -3,10 +3,6 @@ import './Login.css';
 import imgLogo from '../assets/ax2.png';
 import { UserLoginDto } from "../models/UserLoginDto";
 
-async function writeTokenToCookie() {
-  // Implementation for writing token to cookie
-}
-
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,17 +17,14 @@ function Login() {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+     credentials: 'include' ,
       body: JSON.stringify(userLogin)
     };
 
     try {
       const response = await fetch(`${process.env.REACT_APP_LINK_LOCAL}/api/Auth/login`, requestOptions);
       if (response.ok) {
-        const data = await response.json();
-        let token =  response.headers.get("token")
-        let refreshToken = response.headers['refresh-token']
-        // Handle successful login, e.g., save token, redirect, etc.
-        alert('Login successful:', refreshToken);
+         alert('Login successful:', response.status);
 
       } else {
         alert('Login failed:', response.status);
