@@ -11,11 +11,9 @@ function NavBar() {
     <>
       <nav className="navbar">
         <div className="nav-container">
-          <div className="nav-logo-container">
           <NavLink exact to="/" className="nav-logo">
-            <img src={axIcon} alt="ax2" className="logo-icon" />
+            <img src={axIcon} alt="ax2"  />
           </NavLink>
-            </div>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li className="nav-item">
               <NavLink
