@@ -4,6 +4,7 @@ import { BrowserRouter as Router,  Route, Routes } from "react-router-dom";
 import "./App.css";
 import {About} from "./pages/About";
 import Login from "./pages/Login";
+import Main from "./pages/Main";
 
 
 
@@ -16,7 +17,7 @@ function App() {
 
         <div className="pages">
           <Routes>
-            <Route path="/" element={<About />} />
+            <Route path="/" element={<Main/>} />
             <Route path="/login" element={<Login/>}/>
           </Routes>
         </div>
