@@ -1,0 +1,80 @@
+.navbar {
+  height: 80px;
+  display: flex;
+  justify-content: space-between; /* Ensures space is allocated between children */
+  align-items: center;
+  padding: 0 20px; /* Adjust as needed */
+  width: 100%;
+  box-sizing: border-box; /* Ensures padding is included in width */
+  background-color: #f0f0f0; /* Example background color */
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1500px; /* Ensure this does not constrain layout if unnecessary */
+  margin: 0 auto; /* Center container horizontally */
+}
+
+.nav-logo {
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  margin: 0; /* Remove default margin */
+}
+
+.logo-icon {
+  margin-right: 10px; /* Space between icon and text */
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin: 0 1rem; /* Space between menu items */
+}
+
+.nav-links {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+.nav-icon {
+  display: none;
+}
+
+@media screen and (max-width: 960px) {
+  .nav-menu {
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 80px;
+    left: -110%;
+    transition: left 0.5s ease;
+  }
+
+  .nav-menu.active {
+    left: 0;
+    background: #1f5156;
+  }
+
+  .nav-icon {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px; /* Position icon properly */
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #ffdd40;
+  }
+}

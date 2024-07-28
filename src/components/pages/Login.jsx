@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import './Login.css';
-import imgLogo from '../assets/ax2.png';
-import { UserLoginDto } from "../models/UserLoginDto";
-
+import imgLogo from '../../assets/ax2.png';
+import { UserLoginDto } from "../../models/UserLoginDto";
+import { useNavigate } from 'react-router-dom';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const  navManager = useNavigate();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -22,14 +23,14 @@ function Login() {
     };
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_LINK_LOCAL}/api/Auth/login`, requestOptions);
+      const response = await fetch(`${process.env.REACT_APP_LINK_GLOBAL}/api/Auth/login`, requestOptions);
       if (response.ok) {
          alert('Login successful:', response.status);
+          navManager("/main")
 
       } else {
         alert('Login failed:', response.status);
 
-        // Optionally, handle specific status codes like 401 (Unauthorized)
       }
     } catch (error) {
       console.error('An error occurred:', error);
