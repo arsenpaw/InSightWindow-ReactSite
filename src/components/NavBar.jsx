@@ -45,7 +45,7 @@ function NavBar() {
                   className="nav-links"
                   onClick={handleClick}
               >
-                Blog
+                Api
               </NavLink>
             </li>
             <li className="nav-item">
