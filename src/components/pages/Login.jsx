@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import './Login.css';
 import imgLogo from '../../assets/ax2.png';
 import {UserLoginDto} from "../../models/UserLoginDto";
 import {useNavigate} from 'react-router-dom';
-
+import  {AuthContext, AuthProvider} from "../../AuthContext";
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const {login} = useContext(AuthContext);
     const navManager = useNavigate();
 
     async function handleSubmit(event) {
@@ -27,7 +28,8 @@ function Login() {
             const response = await fetch(`${process.env.REACT_APP_LINK_LOCAL}/api/Auth/login`, requestOptions);
             if (response.ok) {
                 alert('Login successful:', response.status);
-                navManager("/main")
+                login();
+                navManager("/userdetails")
 
             } else {
                 alert('Login failed:', response.status);

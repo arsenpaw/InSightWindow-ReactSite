@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 import { NavLink } from "react-router-dom";
 import "./NavBar.css";
 import  axIcon from "../assets/ax2.png";
-
+import  {AuthContext} from "../AuthContext";
 function NavBar() {
   const [click, setClick] = useState(false);
-
+  const { isLoggedIn } = useContext(AuthContext);
   const handleClick = () => setClick(!click);
   return (
     <>
@@ -48,15 +48,16 @@ function NavBar() {
                 Api
               </NavLink>
             </li>
+            {}
             <li className="nav-item">
               <NavLink
                   exact
-                  to="/Login"
+                  to={isLoggedIn ? "/userdetails" : "/login"}
                   activeClassName="active"
                   className="nav-links"
                   onClick={handleClick}
               >
-                Login
+                {isLoggedIn ? "Your Account" : "Login"}
               </NavLink>
             </li>
           </ul>
