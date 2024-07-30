@@ -13,21 +13,17 @@ export default function UserDevices(props) {
     console.log(props.devicesList)
     const devicesList = props.devicesList;
 
-    return (
-        <div className="user-devices">
+    return (<div className="user-devices">
             <h2>Your Devices</h2>
             <div className="device-list">
                 <div className="device-list">
-                    {devicesList.map((device, key) => (
-                        <div key={key} className="device-item">
+                    {devicesList.map((device, key) => (<div key={key} className="device-item">
                             <p>ID: {device.id}</p>
                             <p>Type: {device.deviceType}</p>
-                        </div>
-                    ))}
+                        </div>))}
                 </div>
             </div>
         </div>
 
-    )
-        ;
+    );
 }
