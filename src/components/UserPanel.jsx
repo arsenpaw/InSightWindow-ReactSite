@@ -6,8 +6,6 @@ import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
 export default function UserPanel() {
-    const [users, setUsers] = useState([]);
-    const [currentUser, setCurrentUser] = useState(null);
     const [AddingDevice, setAddDevice] = useState([]);
     const [deviceName, setDeviceName] = useState("");
     const reg = useContext(AuthContext);
@@ -56,6 +54,7 @@ export default function UserPanel() {
 
             if (response.status === 200) {
                 console.log(`Device added: ${deviceName}`);
+
                 setDeviceName("");
             } else {
                 alert('Adding device failed');

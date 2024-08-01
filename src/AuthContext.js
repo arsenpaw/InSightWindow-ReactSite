@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
     const refreshToken = getCookie('refresh-token');
     const token = getCookie('token');
     if (refreshToken) {
-      refreshAccessToken(refreshToken,token);
+     refreshAccessToken(refreshToken,token);
     }
   }, []);
 
@@ -46,6 +46,7 @@ export const AuthProvider = ({ children }) => {
         },
          credentials: 'include'})
         if (body.ok) {
+
           setIsLoggedIn(true);
         }
         else {
