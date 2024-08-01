@@ -1,5 +1,6 @@
 import React from "react";
 import {DeviceDto} from "../models/DeviceDto";
+import "./UserDevices.css";
 
 export default function UserDevices(props) {
     if (props.devicesList === undefined) {

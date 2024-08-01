@@ -1,6 +1,6 @@
 import React, {createContext, useEffect, useState} from 'react';
 
-function deleteAllCookies() {
+export function deleteAllCookies() {
     document.cookie.split(';').forEach(cookie => {
         const eqPos = cookie.indexOf('=');
         const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
@@ -29,7 +29,6 @@ export const AuthProvider = ({ children }) => {
     };
 
      useEffect(() => {
-    // Optionally, retrieve tokens from localStorage or cookies on app startup
     const refreshToken = getCookie('refresh-token');
     const token = getCookie('token');
     if (refreshToken) {

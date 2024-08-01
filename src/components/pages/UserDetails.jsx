@@ -1,4 +1,4 @@
-import './Main.css';
+import './UserDetails.css';
 import imgLogo from '../../assets/axIcon.png';
 import UserPanel from "../UserPanel";
 import UserDevices from "../UserDevices";
@@ -38,7 +38,7 @@ export default function UserDetails() {
     }, []);
 
     return (<div className="app">
-
+        <UserPanel isAdmin = {false}/>
         <UserDevices devicesList={devices}/>
     </div>);
 }
