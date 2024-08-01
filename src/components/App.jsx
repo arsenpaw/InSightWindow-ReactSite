@@ -1,8 +1,7 @@
-import imgLogo from '../assets/ax2.png';
+
 import NavBar from "./NavBar";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import "./App.css";
-import {About} from "./pages/About";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
 import Register from "./pages/Register";

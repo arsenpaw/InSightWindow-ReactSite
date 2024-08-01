@@ -1,5 +1,4 @@
 import './UserDetails.css';
-import imgLogo from '../../assets/axIcon.png';
 import UserPanel from "../UserPanel";
 import UserDevices from "../UserDevices";
 import React, {useState, useEffect} from 'react';
@@ -21,11 +20,16 @@ export default function UserDetails() {
                     },
                     credentials: 'include',
                 });
-                if (response.ok) {
+                if (response.status === 200) {
                     const data = await response.json();
                     const devicesList = data.map(device => new DeviceDto(device.id, device.deviceType));
                     setDevices(devicesList);
-                } else {
+                }
+                else if( response.status === 204) {
+                    const devicesList = [];
+                    setDevices(devicesList);
+                }
+                else {
                     console.error('Error fetching user devices:', response.status);
 
                 }
@@ -38,7 +42,7 @@ export default function UserDetails() {
     }, []);
 
     return (<div className="app">
-        <UserPanel isAdmin = {false}/>
+        <UserPanel/>
         <UserDevices devicesList={devices}/>
     </div>);
 }
