@@ -12,11 +12,11 @@ export default function Main() {
                 </div>
                 <h2 className="main-heading">Inside Window</h2>
                 <p className="description">
-                    fdsfgdsfhgwrthtwertwwuerfhieuifnvliidsjlbvb<br/>
-                    eefrgaesiuryhgioaesrhgoraeyghjhjhjhhh<br/>
-                    pgtjwu9-8rthg-w09rght-w97rtgyhhyyyyyyyy<br/>
-                    hhhhhighow09ugh0w8guhv0w87rgt<br/>
-                    irjjjfhghsa0e9urgh0wuhtg8qwyrhtg08gytekr
+                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
+                    Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. <br/>
+                    Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus<br/>
+                    ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit.<br/>
+                    Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam.
                 </p>
                 <button className="learn-more-button">Learn more</button>
             </main>
