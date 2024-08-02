@@ -4,9 +4,29 @@ import {getCookie} from "../AuthContext";
 import {DeviceDto} from "../models/DeviceDto";
 
 export const DeviceContext = createContext();
-export default function UserDevices() {
-
+export default function UserDevices(){
     const [devices, setDevices] = useState([]);
+    const removeDevice = async (deviceId) => {
+          try {
+                const response = await fetch(`${process.env.REACT_APP_LINK_LOCAL}/api/UsersDb/UnbindFrom?deviceId=${deviceId}`, {
+                    method: 'Post', headers: {
+
+                        'Authorization': `Bearer ${getCookie('token')}`, 'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                });
+                if (response.status === 200) {
+                    setDevices(devices.filter(device => device.id !== deviceId));
+                    alert('Device removed successfully');
+                } else {
+                    console.error('Error fetching user devices:', response.status);
+
+                }
+            } catch (error) {
+                console.error('Error fetching user devices:', error);
+            }
+
+    };
     useEffect(() => {
         async function fetchUserDevices() {
             try {
@@ -44,17 +64,23 @@ export default function UserDevices() {
         </div>);
     }
 
-    return (<div className="user-devices">
+    return (
+        <div className="user-devices">
             <h2>Your Devices</h2>
             <div className="device-list">
-                <div className="device-list">
-                    {devices.map((device, key) => (<div key={key} className="device-item">
+                {devices.map((device, key) => (
+                    <div key={key} className="device-item" style={{ position: 'relative' }}>
+                        <button
+                            onClick={() => removeDevice(device.id)}
+                            className="remove-button"
+                        >
+                            &times;
+                        </button>
                         <p>ID: {device.id}</p>
                         <p>Type: {device.deviceType}</p>
-                    </div>))}
-                </div>
+                    </div>
+                ))}
             </div>
         </div>
-
     );
 }

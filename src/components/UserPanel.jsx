@@ -35,6 +35,9 @@ export default function UserPanel() {
                 alert('Delete account failed');
             }
         } catch (error) {
+            if (error.response.status === 409) {
+                alert('Account has devices, please remove them first')
+            }
             console.error('An error occurred:', error);
             alert('An error occurred while trying to delete the account.');
         }
@@ -60,6 +63,7 @@ export default function UserPanel() {
                 alert('Adding device failed');
             }
         } catch (error) {
+
             console.error('An error occurred:', error);
             alert('An error occurred while trying to add device to  the account.');
         }
