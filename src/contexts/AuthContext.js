@@ -30,19 +30,17 @@ export const AuthProvider = ({ children }) => {
 
      useEffect(() => {
     const refreshToken = getCookie('refresh-token');
-    const token = getCookie('token');
     if (refreshToken) {
-     refreshAccessToken(refreshToken,token);
+     refreshAccessToken(refreshToken);
     }
   }, []);
 
-     const refreshAccessToken = async (refreshToken,token) => {
+     const refreshAccessToken = async (refreshToken) => {
        const body = await  fetch(`${process.env.REACT_APP_LINK_LOCAL}/api/Auth/refresh-tokens`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'refresh-token': refreshToken,
-           'Authorization': `Bearer ${token}`,
         },
          credentials: 'include'})
         if (body.ok) {

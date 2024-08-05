@@ -3,7 +3,7 @@ import './Login.css';
 import imgLogo from '../../assets/ax2.png';
 import {UserLoginDto} from "../../models/UserLoginDto";
 import {useNavigate} from 'react-router-dom';
-import  {AuthContext} from "../../AuthContext";
+import  {AuthContext} from "../../contexts/AuthContext";
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

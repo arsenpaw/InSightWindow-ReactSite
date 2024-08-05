@@ -2,7 +2,7 @@ import React, {useContext, useState} from "react";
 import { NavLink } from "react-router-dom";
 import "./NavBar.css";
 import  axIcon from "../assets/ax2.png";
-import  {AuthContext} from "../AuthContext";
+import  {AuthContext} from "../contexts/AuthContext";
 function NavBar() {
   const [click, setClick] = useState(false);
   const { isLoggedIn } = useContext(AuthContext);

@@ -1,16 +1,16 @@
 import React, {useState, useContext} from "react";
 import imgLogo from "../assets/axIcon.png";
 import "./UserPanel.css";
-import {AuthContext, getCookie} from "../AuthContext";
+import {AuthContext, getCookie} from "../contexts/AuthContext";
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
-
+import {DeviceContext} from "../contexts/DeviceContext";
 export default function UserPanel() {
     const [AddingDevice, setAddDevice] = useState([]);
     const [deviceName, setDeviceName] = useState("");
     const reg = useContext(AuthContext);
     const navManager = useNavigate();
-
+    const {fetchUserDevices} = useContext(DeviceContext);
 
     const deleteAccount = async () => {
         const confirmDelete = window.confirm("Are you sure you want to delete your account? This action cannot be undone.");
@@ -57,8 +57,8 @@ export default function UserPanel() {
 
             if (response.status === 200) {
                 console.log(`Device added: ${deviceName}`);
-
                 setDeviceName("");
+                fetchUserDevices();
             } else {
                 alert('Adding device failed');
             }

@@ -1,11 +1,13 @@
-import React, {useEffect, useState,createContext} from "react";
+import React, {useEffect, useState, createContext, useContext} from "react";
 import "./UserDevices.css";
-import {getCookie} from "../AuthContext";
+import {getCookie} from "../contexts/AuthContext";
 import {DeviceDto} from "../models/DeviceDto";
+import {DeviceContext, DeviceProvider} from "../contexts/DeviceContext";
 
-export const DeviceContext = createContext();
+
 export default function UserDevices(){
-    const [devices, setDevices] = useState([]);
+
+    const { devices,setDevices } = useContext(DeviceContext);
     const removeDevice = async (deviceId) => {
           try {
                 const response = await fetch(`${process.env.REACT_APP_LINK_LOCAL}/api/UsersDb/UnbindFrom?deviceId=${deviceId}`, {
@@ -27,33 +29,6 @@ export default function UserDevices(){
             }
 
     };
-    useEffect(() => {
-        async function fetchUserDevices() {
-            try {
-                const response = await fetch(`${process.env.REACT_APP_LINK_LOCAL}/api/DevicesDb/DeviceOfUser`, {
-                    method: 'GET', headers: {
-
-                        'Authorization': `Bearer ${getCookie('token')}`, 'Content-Type': 'application/json',
-                    },
-                    credentials: 'include',
-                });
-                if (response.status === 200) {
-                    const data = await response.json();
-                    const devicesList = data.map(device => new DeviceDto(device.id, device.deviceType));
-                    setDevices(devicesList);
-                } else if (response.status === 204) {
-                    setDevices(null);
-                } else {
-                    console.error('Error fetching user devices:', response.status);
-
-                }
-            } catch (error) {
-                console.error('Error fetching user devices:', error);
-            }
-        }
-
-        fetchUserDevices();
-    }, []);
 
     if (devices === null) {
         return (<div className="user-devices">

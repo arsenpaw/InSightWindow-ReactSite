@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import Main from "./pages/Main";
 import Register from "./pages/Register";
 import UserDetails from "./pages/UserDetails";
-import {AuthProvider} from "../AuthContext";
+import {AuthProvider} from "../contexts/AuthContext";
 
 
 function App() {
