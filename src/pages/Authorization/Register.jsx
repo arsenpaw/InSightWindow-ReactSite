@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import './Login.css';
+import React, { useState } from 'react';
+import styles from './Login.module.css';
 import imgLogo from '../../assets/ax2.png';
-import {UserRegisterDto} from "../../models/UserRegisterDto";
-import {useNavigate} from 'react-router-dom';
+import { UserRegisterDto } from "../../models/UserRegisterDto";
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
     const [email, setEmail] = useState('');
@@ -28,14 +28,12 @@ function Register() {
         try {
             const response = await fetch(`${process.env.REACT_APP_LINK}/api/Auth/create`, requestOptions);
             if (response.ok) {
-                alert('Login successful:', response.status);
-                navManager("/login")
-
+                alert('Registration successful:', response.status);
+                navManager("/login");
             } else if (response.status === 409) {
-                alert("Email has already been occupaied")
+                alert("Email has already been occupied");
             } else {
-                alert('Login failed:', response.status);
-
+                alert('Registration failed:', response.status);
             }
         } catch (error) {
             console.error('An error occurred:', error);
@@ -43,15 +41,15 @@ function Register() {
     }
 
     return (
-        <div className="login-container">
-            <div className="login-box">
-                <div className="logo">
-                    <img src={imgLogo} alt="Logo"/>
+        <div className={styles.loginContainer}>
+            <div className={styles.loginBox}>
+                <div className={styles.logo}>
+                    <img src={imgLogo} alt="Logo" />
                 </div>
-                <form onSubmit={handleSubmit} className="login-form">
-                    <div className="form-group">
+                <form onSubmit={handleSubmit} className={styles.loginForm}>
+                    <div className={styles.formGroup}>
                         <label htmlFor="email">Email Address</label>
-                        <div className="input-wrapper">
+                        <div className={styles.inputWrapper}>
                             <i className="icon-email"></i>
                             <input
                                 type="email"
@@ -63,13 +61,13 @@ function Register() {
                             />
                         </div>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="email">First Name</label>
-                        <div className="input-wrapper">
+                    <div className={styles.formGroup}>
+                        <label htmlFor="firstName">First Name</label>
+                        <div className={styles.inputWrapper}>
                             <i className="icon-email"></i>
                             <input
                                 type="text"
-                                id="email"
+                                id="firstName"
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
                                 required
@@ -77,13 +75,13 @@ function Register() {
                             />
                         </div>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="email">Last Name</label>
-                        <div className="input-wrapper">
+                    <div className={styles.formGroup}>
+                        <label htmlFor="lastName">Last Name</label>
+                        <div className={styles.inputWrapper}>
                             <i className="icon-email"></i>
                             <input
                                 type="text"
-                                id="email"
+                                id="lastName"
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
                                 required
@@ -91,9 +89,9 @@ function Register() {
                             />
                         </div>
                     </div>
-                    <div className="form-group">
+                    <div className={styles.formGroup}>
                         <label htmlFor="password">Password</label>
-                        <div className="input-wrapper">
+                        <div className={styles.inputWrapper}>
                             <i className="icon-password"></i>
                             <input
                                 type={showPassword ? 'text' : 'password'}
@@ -104,18 +102,17 @@ function Register() {
                                 placeholder="Password"
                             />
                             <i
-                                className="icon-show-password"
+                                className={styles.iconShowPassword}
                                 onClick={() => setShowPassword(!showPassword)}
                             >
                                 {showPassword ? 'Hide' : 'Show'}
                             </i>
                         </div>
                     </div>
-                    <button type="submit" className="login-button">Submit</button>
+                    <button type="submit" className={styles.loginButton}>Submit</button>
                 </form>
-                <div className="links">
-                    <a href="/login">Log In</a>
-
+                <div className={styles.links}>
+                    <a href="/Login">Log In</a>
                 </div>
             </div>
         </div>

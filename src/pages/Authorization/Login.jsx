@@ -1,14 +1,15 @@
-import React, {useContext, useState} from 'react';
-import './Login.css';
+import React, { useContext, useState } from 'react';
+import styles from './Login.module.css'; // Import the CSS module
 import imgLogo from '../../assets/ax2.png';
-import {UserLoginDto} from "../../models/UserLoginDto";
-import {useNavigate} from 'react-router-dom';
-import  {AuthContext} from "../../contexts/AuthContext";
+import { UserLoginDto } from "../../models/UserLoginDto";
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from "../../contexts/AuthContext";
+
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-    const {login} = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
     const navManager = useNavigate();
 
     async function handleSubmit(event) {
@@ -27,13 +28,11 @@ function Login() {
         try {
             const response = await fetch(`${process.env.REACT_APP_LINK}/api/Auth/login`, requestOptions);
             if (response.ok) {
-                alert('Login successful:', response.status);
+                alert('Authorization successful:', response.status);
                 login();
                 navManager("/userdetails")
-
             } else {
-                alert('Login failed:', response.status);
-
+                alert('Authorization failed:', response.status);
             }
         } catch (error) {
             console.error('An error occurred:', error);
@@ -41,15 +40,15 @@ function Login() {
     }
 
     return (
-        <div className="login-container">
-            <div className="login-box">
-                <div className="logo">
-                    <img src={imgLogo} alt="Logo"/>
+        <div className={styles.loginContainer}>
+            <div className={styles.loginBox}>
+                <div className={styles.logo}>
+                    <img src={imgLogo} alt="Logo" />
                 </div>
-                <form onSubmit={handleSubmit} className="login-form">
-                    <div className="form-group">
+                <form onSubmit={handleSubmit} className={styles.loginForm}>
+                    <div className={styles.formGroup}>
                         <label htmlFor="email">Email Address</label>
-                        <div className="input-wrapper">
+                        <div className={styles.inputWrapper}>
                             <i className="icon-email"></i>
                             <input
                                 type="email"
@@ -61,9 +60,9 @@ function Login() {
                             />
                         </div>
                     </div>
-                    <div className="form-group">
+                    <div className={styles.formGroup}>
                         <label htmlFor="password">Password</label>
-                        <div className="input-wrapper">
+                        <div className={styles.inputWrapper}>
                             <i className="icon-password"></i>
                             <input
                                 type={showPassword ? 'text' : 'password'}
@@ -74,17 +73,17 @@ function Login() {
                                 placeholder="Password"
                             />
                             <i
-                                className="icon-show-password"
+                                className={styles.iconShowPassword}
                                 onClick={() => setShowPassword(!showPassword)}
                             >
                                 {showPassword ? 'Hide' : 'Show'}
                             </i>
                         </div>
                     </div>
-                    <button type="submit" className="login-button">Submit</button>
+                    <button type="submit" className={styles.loginButton}>Submit</button>
                 </form>
-                <div className="links">
-                    <a href="/register">Register</a>
+                <div className={styles.links}>
+                    <a href="/Register">Register</a>
                     <a href="/forgot-password">Forgot Password?</a>
                 </div>
             </div>

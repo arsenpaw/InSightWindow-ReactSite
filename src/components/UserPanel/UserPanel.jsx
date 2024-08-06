@@ -1,16 +1,17 @@
-import React, {useState, useContext} from "react";
-import imgLogo from "../assets/axIcon.png";
-import "./UserPanel.css";
-import {AuthContext, getCookie} from "../contexts/AuthContext";
-import {useNavigate} from 'react-router-dom';
+import React, { useState, useContext } from "react";
+import imgLogo from "../../assets/axIcon.png";
+import styles from "./UserPanel.module.css"; // Import CSS Module
+import { AuthContext, getCookie } from "../../contexts/AuthContext";
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import {DeviceContext} from "../contexts/DeviceContext";
+import { DeviceContext } from "../../contexts/DeviceContext";
+
 export default function UserPanel() {
-    const [AddingDevice, setAddDevice] = useState([]);
-    const [deviceName, setDeviceName] = useState("");
+    const [addingDevice, setAddDevice] = useState("");
+
     const reg = useContext(AuthContext);
     const navManager = useNavigate();
-    const {fetchUserDevices} = useContext(DeviceContext);
+    const { fetchUserDevices } = useContext(DeviceContext);
 
     const deleteAccount = async () => {
         const confirmDelete = window.confirm("Are you sure you want to delete your account? This action cannot be undone.");
@@ -18,13 +19,12 @@ export default function UserPanel() {
             return;
         }
         try {
-            const response = await axios.delete(`${process.env.REACT_APP_LINK_LOCAL}/api/UsersDb/concreteUser`, {
+            const response = await axios.delete(`${process.env.REACT_APP_LINK}/api/UsersDb/concreteUser`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${getCookie('token')}`, 'Content-Type': 'application/json',
                 },
                 credentials: 'include',
-
             });
 
             if (response.status === 200) {
@@ -36,7 +36,7 @@ export default function UserPanel() {
             }
         } catch (error) {
             if (error.response.status === 409) {
-                alert('Account has devices, please remove them first')
+                alert('Account has devices, please remove them first');
             }
             console.error('An error occurred:', error);
             alert('An error occurred while trying to delete the account.');
@@ -44,65 +44,57 @@ export default function UserPanel() {
     };
 
     const addDevice = async () => {
-
         try {
-            const response = await fetch(`${process.env.REACT_APP_LINK_LOCAL}/api/UsersDb/BindTo?deviceId=${AddingDevice}`, {
+            const response = await fetch(`${process.env.REACT_APP_LINK}/api/UsersDb/BindTo?deviceId=${addingDevice}`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${getCookie('token')}`, 'Content-Type': 'application/json',
                 },
                 credentials: 'include',
-
             });
 
             if (response.status === 200) {
-                console.log(`Device added: ${deviceName}`);
-                setDeviceName("");
+                console.log(`Device added: ${addingDevice}`);
+                setAddDevice("");
                 fetchUserDevices();
             } else {
                 alert('Adding device failed');
             }
         } catch (error) {
-
             console.error('An error occurred:', error);
-            alert('An error occurred while trying to add device to  the account.');
+            alert('An error occurred while trying to add device to the account.');
         }
-
     };
 
     return (
-        <div className="user-panel">
-            <div className="user-menu">
-                <img src={imgLogo} alt="Logo" className="logo"/>
+        <div className={styles.userPanel}>
+            <div className={styles.userMenu}>
+                <img src={imgLogo} alt="Logo" className={styles.logo} />
                 <h2>User Panel</h2>
                 <ul>
                     <li>Profile</li>
                     <li>Settings</li>
                     <li onClick={() => {
-                        reg.logout()
-                        navManager("/login")
-                    }}>Logout
-                    </li>
+                        reg.logout();
+                        navManager("/login");
+                    }}>Logout</li>
                 </ul>
             </div>
-            <div className="user-actions">
-
+            <div className={styles.userActions}>
                 <div>
                     <h3>Add Device</h3>
                     <input
                         type="text"
                         placeholder="Device ID"
-                        value={AddingDevice}
+                        value={addingDevice}
                         onChange={(e) => setAddDevice(e.target.value)}
                     />
                     <button onClick={addDevice}>Add Device</button>
                 </div>
-
-
             </div>
-            <div className="delete-account-container">
+            <div className={styles.deleteAccountContainer}>
                 <h3>Delete Account</h3>
-                <button className="delete-account-button" onClick={() => deleteAccount()}>
+                <button className={styles.deleteAccountButton} onClick={deleteAccount}>
                     Delete Account
                 </button>
             </div>

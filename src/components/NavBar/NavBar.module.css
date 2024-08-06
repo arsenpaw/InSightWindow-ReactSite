@@ -1,16 +1,14 @@
 .navbar {
-
   height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
-
   top: 0;
   z-index: 10;
 }
 
-.nav-container {
+.navContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,90 +18,81 @@
   position: relative;
 }
 
-
-.nav-logo {
+.navLogo {
   margin-top: 0px;
   cursor: pointer;
   text-decoration: none;
   font-size: 12rem;
   scale: 0.3;
   display: flex;
-    align-items: flex-start;
+  align-items: flex-start;
   justify-content: space-between;
 }
 
-.nav-logo .icon {
-
+.navLogo .icon {
   display: inline-block;
   width: 3rem;
   height: 3rem;
   margin-left: 16px;
 }
 
-
-.nav-menu {
+.navMenu {
   display: flex;
   list-style: none;
   text-align: center;
   margin-right: 2rem;
 }
 
-.nav-links {
+.navLinks {
   color: black;
   text-decoration: none;
   padding: 0.5rem 1rem;
   height: 100%;
-
   border-bottom: 3px solid transparent;
 }
-/* .fa-code {
-  margin-left: 1rem;
-} */
 
-.nav-item {
+.navItem {
   line-height: 40px;
   margin-right: 1rem;
 }
 
-.nav-item:after {
+.navItem:after {
   content: "";
   display: block;
   height: 3px;
   width: 0px;
   background: transparent;
   transition: width 0.7s ease, background-color 0.2s ease-in-out;
-
 }
 
-.nav-item:hover:after {
+.navItem:hover:after {
   width: 100%;
   background: black;
 }
 
-.nav-item .active {
-  background-color: #000; /* Black background */
-            color: #fff; /* White text */
-            font-weight: bold;
-    border-radius: 15px;
+.navItem .active {
+  background-color: #000;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 15px;
 }
 
-.nav-icon {
+.navIcon {
   display: none;
   color: black;
 }
 
-.nav-icon .icon {
+.navIcon .icon {
   display: inline-block;
   width: 2rem;
   height: 2rem;
 }
 
 @media screen and (max-width: 960px) {
-  .nav-menu {
+  .navMenu {
     display: flex;
     flex-direction: column;
     width: 100%;
-
     position: absolute;
     top: 80px;
     left: -110%;
@@ -111,29 +100,31 @@
     transition: all 0.5s ease;
   }
 
-  .nav-menu.active {
-  background-color: #535f8c;
+  .navMenu.active {
+    background-color: #535f8c;
     left: 0px;
     opacity: 1;
     transition: all 0.5s ease;
     z-index: 1;
   }
-  .nav-item .active {
+
+  .navItem .active {
     color: white;
     border: none;
   }
-  .nav-links {
+
+  .navLinks {
     padding: 1.5rem;
     width: 92%;
     display: table;
   }
 
-  .nav-logo .icon {
+  .navLogo .icon {
     width: 2rem;
     height: 2rem;
   }
 
-  .nav-icon {
+  .navIcon {
     display: block;
     position: absolute;
     top: 50%;

@@ -1,4 +1,4 @@
-body {
+.body {
   margin: 0;
   padding: 0;
   display: flex;
@@ -9,8 +9,8 @@ body {
   background-color: #e0e7ff;
 }
 
-.login-container {
-  padding-top: 50px;
+.loginContainer {
+  padding-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,7 +18,7 @@ body {
   height: 100%;
 }
 
-.login-box {
+.loginBox {
   background-color: #fff;
   padding: 2rem;
   border-radius: 20px;
@@ -33,23 +33,23 @@ body {
   margin-bottom: 1rem;
 }
 
-.login-form {
+.loginForm {
   display: flex;
   flex-direction: column;
 }
 
-.form-group {
+.formGroup {
   margin-bottom: 1.5rem;
 }
 
-.form-group label {
+.formGroup label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: bold;
   color: #333;
 }
 
-.input-wrapper {
+.inputWrapper {
   display: flex;
   align-items: center;
   background-color: #f1f5f9;
@@ -57,12 +57,12 @@ body {
   padding: 0.5rem 1rem;
 }
 
-.input-wrapper i {
+.inputWrapper i {
   margin-right: 0.5rem;
   color: #6b7280;
 }
 
-.input-wrapper input {
+.inputWrapper input {
   border: none;
   background: none;
   outline: none;
@@ -71,11 +71,11 @@ body {
   color: #333;
 }
 
-.icon-show-password {
+.iconShowPassword {
   cursor: pointer;
 }
 
-.login-button {
+.loginButton {
   background-color: #6366f1;
   color: #fff;
   border: none;
@@ -86,7 +86,7 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.login-button:hover {
+.loginButton:hover {
   background-color: #4f46e5;
 }
 
@@ -105,5 +105,3 @@ body {
 .links a:hover {
   text-decoration: underline;
 }
-
-
