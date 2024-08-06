@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
-import styles from "./NavBar.module.css" // Import the CSS module
+import classNames from "classnames";
+import styles from "./NavBar.module.css"; // Import the CSS module
 import axIcon from "../../assets/ax2.png";
 import { AuthContext } from "../../contexts/AuthContext";
 
@@ -21,8 +22,9 @@ function NavBar() {
               <NavLink
                 exact
                 to="/"
-                activeClassName={styles.active}
-                className={styles.navLinks}
+                className={({ isActive }) =>
+                  classNames(styles.navLinks, { [styles.navLinksActive]: isActive })
+                }
                 onClick={handleClick}
               >
                 Home
@@ -32,8 +34,9 @@ function NavBar() {
               <NavLink
                 exact
                 to="/about"
-                activeClassName={styles.active}
-                className={styles.navLinks}
+                className={({ isActive }) =>
+                  classNames(styles.navLinks, { [styles.navLinksActive]: isActive })
+                }
                 onClick={handleClick}
               >
                 About
@@ -43,8 +46,9 @@ function NavBar() {
               <NavLink
                 exact
                 to="/blog"
-                activeClassName={styles.active}
-                className={styles.navLinks}
+                className={({ isActive }) =>
+                  classNames(styles.navLinks, { [styles.navLinksActive]: isActive })
+                }
                 onClick={handleClick}
               >
                 Api
@@ -54,8 +58,9 @@ function NavBar() {
               <NavLink
                 exact
                 to={isLoggedIn ? "/userdetails" : "/login"}
-                activeClassName={styles.active}
-                className={styles.navLinks}
+                className={({ isActive }) =>
+                  classNames(styles.navLinks, { [styles.navLinksActive]: isActive })
+                }
                 onClick={handleClick}
               >
                 {isLoggedIn ? "Your Account" : "Login"}
@@ -63,11 +68,7 @@ function NavBar() {
             </li>
           </ul>
           <div className={styles.navIcon} onClick={handleClick}>
-            {click ? (
-              <span className={styles.icon}></span>
-            ) : (
-              <span className={styles.icon}></span>
-            )}
+            <span className={styles.icon}></span>
           </div>
         </div>
       </nav>

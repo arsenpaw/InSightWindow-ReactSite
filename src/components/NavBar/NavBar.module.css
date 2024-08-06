@@ -45,12 +45,19 @@
 
 .navLinks {
   color: black;
+  background-color: transparent;
   text-decoration: none;
   padding: 0.5rem 1rem;
   height: 100%;
   border-bottom: 3px solid transparent;
 }
 
+.navLinksActive {
+  background-color: #070707;
+  color: white;
+  font-weight: bold;
+  border-radius: 15px;
+}
 .navItem {
   line-height: 40px;
   margin-right: 1rem;
@@ -68,14 +75,11 @@
 .navItem:hover:after {
   width: 100%;
   background: black;
+
 }
 
-.navItem .active {
-  background-color: #000;
-  color: #fff;
-  font-weight: bold;
-  border-radius: 15px;
-}
+
+
 
 .navIcon {
   display: none;
