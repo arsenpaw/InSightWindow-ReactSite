@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
      const refreshAccessToken = async (refreshToken) => {
-       const body = await  fetch(`${process.env.REACT_APP_LINK_LOCAL}/api/Auth/refresh-tokens`, {
+       const body = await  fetch(`${process.env.REACT_APP_LINK}/api/Auth/refresh-tokens`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

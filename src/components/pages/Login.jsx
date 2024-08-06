@@ -25,7 +25,7 @@ function Login() {
         };
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_LINK_LOCAL}/api/Auth/login`, requestOptions);
+            const response = await fetch(`${process.env.REACT_APP_LINK}/api/Auth/login`, requestOptions);
             if (response.ok) {
                 alert('Login successful:', response.status);
                 login();

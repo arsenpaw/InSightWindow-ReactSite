@@ -26,7 +26,7 @@ function Register() {
         };
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_LINK_GLOBAL}/api/Auth/create`, requestOptions);
+            const response = await fetch(`${process.env.REACT_APP_LINK}/api/Auth/create`, requestOptions);
             if (response.ok) {
                 alert('Login successful:', response.status);
                 navManager("/login")
