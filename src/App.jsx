@@ -7,6 +7,8 @@ import Main from "./pages/Main/Main";
 import Register from "./pages/Authorization/Register";
 import UserAccount from "./pages/UserAccount/UserAccount";
 import {AuthProvider} from "./contexts/AuthContext";
+import Demo from "./test/testComponent";
+
 
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
                         <Route path='/userdetails' element={<UserAccount/>}/>
+                         <Route path='/test' element={<Demo/>}/>
                     </Routes>
                 </div>
             </Router>

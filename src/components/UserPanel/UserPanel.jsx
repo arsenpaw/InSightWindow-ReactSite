@@ -72,8 +72,6 @@ export default function UserPanel() {
                 <img src={imgLogo} alt="Logo" className={styles.logo} />
                 <h2>User Panel</h2>
                 <ul>
-                    <li>Profile</li>
-                    <li>Settings</li>
                     <li onClick={() => {
                         reg.logout();
                         navManager("/login");
@@ -98,6 +96,13 @@ export default function UserPanel() {
                     Delete Account
                 </button>
             </div>
+            {reg.isAdmin && (
+            <div >
+                <div>
+                    <button className={styles.deleteAccountButton} onClick={() =>{}}>ADMIN PANEL</button>
+                </div>
+            </div>
+        )}
         </div>
     );
 }
