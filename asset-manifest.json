@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/insightwindow-site/static/css/main.1797e1e4.css",
+    "main.js": "/insightwindow-site/static/js/main.6f662a22.js",
+    "static/media/axIcon.png": "/insightwindow-site/static/media/axIcon.766f5a050b813ea533e8.png",
+    "static/media/ax2.png": "/insightwindow-site/static/media/ax2.7537bf331723c351792d.png",
+    "index.html": "/insightwindow-site/index.html",
+    "main.1797e1e4.css.map": "/insightwindow-site/static/css/main.1797e1e4.css.map",
+    "main.6f662a22.js.map": "/insightwindow-site/static/js/main.6f662a22.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1797e1e4.css",
+    "static/js/main.6f662a22.js"
+  ]
+}
