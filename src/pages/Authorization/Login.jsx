@@ -30,8 +30,8 @@ function Login() {
             const response = await fetch(`${process.env.REACT_APP_LINK}/api/Auth/login`, requestOptions);
             if (response.ok) {
                 alert('Authorization successful:', response.status);
-                setCookie('token', response.headers.get('Token'),365);
-                setCookie('refresh-token', response.headers.get('Refresh-Token'),1);
+                setCookie('token', response.headers.get('Token'),process.env.TOKEN_DEADLINE);
+                setCookie('refresh-token', response.headers.get('Refresh-Token'),process.env.REFRESH_TOKEN_DEADLINE);
 
                 login();
                 navManager("/userdetails")
