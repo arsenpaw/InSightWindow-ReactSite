@@ -11,7 +11,7 @@ import Demo from "./test/testComponent";
 function App() {
     return (
         <AuthProvider>
-            <BrowserRouter basename="/InSightWindow-ReactSite">
+            <BrowserRouter basename="">
                 <NavBar />
 
                 <div className="pages">
