@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Login.module.css';
 import imgLogo from '../../assets/ax2.png';
 import { UserRegisterDto } from "../../models/UserRegisterDto";
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 function Register() {
     const [email, setEmail] = useState('');
@@ -44,7 +44,7 @@ function Register() {
         <div className={styles.loginContainer}>
             <div className={styles.loginBox}>
                 <div className={styles.logo}>
-                    <img src={imgLogo} alt="Logo" />
+                    <img src={imgLogo} alt="Logo"/>
                 </div>
                 <form onSubmit={handleSubmit} className={styles.loginForm}>
                     <div className={styles.formGroup}>
@@ -112,7 +112,9 @@ function Register() {
                     <button type="submit" className={styles.loginButton}>Submit</button>
                 </form>
                 <div className={styles.links}>
-                    <a href="/Login">Log In</a>
+                    <Link to="/Login">Register</Link>
+
+
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import styles from './Login.module.css'; // Import the CSS module
 import imgLogo from '../../assets/ax2.png';
 import { UserLoginDto } from "../../models/UserLoginDto";
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { AuthContext } from "../../contexts/AuthContext";
 
 function Login() {
@@ -43,7 +43,7 @@ function Login() {
         <div className={styles.loginContainer}>
             <div className={styles.loginBox}>
                 <div className={styles.logo}>
-                    <img src={imgLogo} alt="Logo" />
+                    <img src={imgLogo} alt="Logo"/>
                 </div>
                 <form onSubmit={handleSubmit} className={styles.loginForm}>
                     <div className={styles.formGroup}>
@@ -83,8 +83,8 @@ function Login() {
                     <button type="submit" className={styles.loginButton}>Submit</button>
                 </form>
                 <div className={styles.links}>
-                    <a href="/Register">Register</a>
-                    <a href="/forgot-password">Forgot Password?</a>
+                    <Link to="/register">Register</Link>
+                    <Link to="/forgot-password">Forgot Password?</Link>
                 </div>
             </div>
         </div>
