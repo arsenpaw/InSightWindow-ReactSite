@@ -12,7 +12,7 @@ export const DeviceProvider = ({ children }) => {
             const response = await fetch(`${process.env.REACT_APP_LINK}/api/DevicesDb/DeviceOfUser`, {
                 method: 'GET', headers: {
                     'Authorization': `Bearer ${getCookie('token')}`, 'Content-Type': 'application/json',
-                }, credentials: 'include',
+                }, credentials: "include",
             });
             if (response.status === 200) {
                 const data = await response.json();

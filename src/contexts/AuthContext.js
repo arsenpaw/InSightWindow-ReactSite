@@ -61,7 +61,7 @@ export const AuthProvider = ({children}) => {
                     'Content-Type': 'application/json',
                     'refresh-token': refreshToken,
                 },
-                credentials: 'include'
+                credentials: 'same-origin'
             })
             if (body.ok) {
                 setIsLoggedIn(true);

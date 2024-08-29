@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import styles from "./UserDevices.module.css"; // Import CSS Module
-import { getCookie } from "../../contexts/AuthContext";
 import { DeviceContext } from "../../contexts/DeviceContext";
 import {Device} from "../Device/Device";
 
