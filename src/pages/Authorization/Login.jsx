@@ -3,7 +3,7 @@ import styles from './Login.module.css'; // Import the CSS module
 import imgLogo from '../../assets/ax2.png';
 import { UserLoginDto } from "../../models/UserLoginDto";
 import {Link, useNavigate} from 'react-router-dom';
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext,setCookie } from "../../contexts/AuthContext";
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -22,6 +22,7 @@ function Login() {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
+            withCredentials: true,
             body: JSON.stringify(userLogin)
         };
 
@@ -29,6 +30,9 @@ function Login() {
             const response = await fetch(`${process.env.REACT_APP_LINK}/api/Auth/login`, requestOptions);
             if (response.ok) {
                 alert('Authorization successful:', response.status);
+                setCookie('token', response.headers.get('Token'),365);
+                setCookie('refresh-token', response.headers.get('Refresh-Token'),1);
+
                 login();
                 navManager("/userdetails")
             } else {
