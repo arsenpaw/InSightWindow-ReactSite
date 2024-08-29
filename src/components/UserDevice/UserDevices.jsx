@@ -4,7 +4,7 @@ import { DeviceContext } from "../../contexts/DeviceContext";
 import {Device} from "../Device/Device";
 
 export default function UserDevices() {
-    const { devices, removeDevice } = useContext(DeviceContext);
+    const { devices } = useContext(DeviceContext);
 
 
 

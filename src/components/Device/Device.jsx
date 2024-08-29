@@ -1,6 +1,5 @@
 import styles from "../UserDevice/UserDevices.module.css";
 import React, {useContext} from "react";
-import {removeDevice} from "../UserDevice/UserDevices";
 import {getCookie} from "../../contexts/AuthContext";
 import {DeviceContext} from "../../contexts/DeviceContext";
 
