@@ -9,10 +9,8 @@ Explore our modern web interface, built to give you complete control over your d
 - **Account Management**: Effortlessly manage your account with our user-friendly interface.
 - **Device Integration**: Seamlessly operate and monitor all your devices from one platform.
 - **Product Updates**: Stay informed with the latest product news through full integration with the [InSightWindow-Server][api], ensuring top-notch performance.
-
-> *"Experience innovation and comfort in one place!"*
-
 ---
+*This microcontroller system is under development and some features are still in progress.
 
 Visit our mobile app: [InSightWindow-App][app-url]  
 Backend integration powered by: [InSightWindow-Server][api]
