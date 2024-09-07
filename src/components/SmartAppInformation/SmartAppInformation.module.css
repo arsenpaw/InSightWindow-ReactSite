@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.phoneIcon {
+  display: flex;
+  scale: 60%;
+ max-width: 100%;
+    height: auto;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.windowTitle {
+  display: flex;
+
+ flex-direction: column;
+}
+
+.windowDescription {
+
+}

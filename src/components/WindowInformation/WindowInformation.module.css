@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.windowIcon {
+  display: flex;
+  scale: 60%;
+}
+
+.windowTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.windowDescription {
+
+}
