@@ -1,19 +1,17 @@
 .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .windowIcon {
-  display: flex;
+ flex-direction: column;
   scale: 60%;
+ max-width: 100%;
+    height: auto;
 }
 
 .windowTitle {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
+ flex-direction: column;
 }
 
 .windowDescription {

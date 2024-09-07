@@ -5,18 +5,18 @@ import WindowInformation from "../../components/WindowInformation/WindowInformat
 import SmartAppInformation from "../../components/SmartAppInformation/SmartAppInformation";
 
 import Button from 'react-bootstrap/Button';
-import { Container, Row, Col } from 'react-bootstrap';
+import {Container, Row, Col} from 'react-bootstrap';
 
 export default function Main() {
     return (
         <Container className={styles.app}>
             <Row className={styles.mainContent}>
-                <Col xs={12} md={12} lg ={8} className={styles.iconContainer}>
+                <Col className={styles.iconContainer}>
                     <div className={styles.icon}>
                         <img src={imgLogo} alt="Logo"/>
                     </div>
                 </Col>
-                <Col xs={12} md={12} lg ={8}>
+                <Col>
                     <h2 className={styles.mainHeading}>Inside Window</h2>
                     <p className={styles.description}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>
@@ -29,7 +29,7 @@ export default function Main() {
                     <Button className={styles.learnMoreButton} onClick={() => {
                         const section = document.getElementById("moreInfoSection");
                         if (section) {
-                          section.scrollIntoView({ behavior: "smooth" });
+                            section.scrollIntoView({behavior: "smooth"});
                         }
                     }}>
                         Learn more
@@ -37,13 +37,14 @@ export default function Main() {
                 </Col>
             </Row>
             <Row id="moreInfoSection">
-                <Col xs={12} md={12} lg ={8}>
-                    <WindowInformation />
-                </Col>
-                <Col xs={12} md={12} lg ={8}>
-                    <SmartAppInformation />
-                </Col>
+                <WindowInformation/>
             </Row>
+            <Row>
+                <SmartAppInformation/>
+
+            </Row>
+
+
         </Container>
     );
 }

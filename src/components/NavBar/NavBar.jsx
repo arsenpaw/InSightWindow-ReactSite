@@ -13,10 +13,11 @@ function NavBar() {
   return (
     <>
       <nav className={styles.navbar}>
-        <div className={styles.navContainer}>
-          <NavLink exact to="/" className={styles.navLogo}>
-            <img src={axIcon} alt="ax2" />
+        <NavLink exact to="/" className={styles.navLogo}>
+            <img src={axIcon} alt="ax2" className={styles.logo}/>
           </NavLink>
+        <div className={styles.navContainer}>
+
           <ul className={click ? `${styles.navMenu} ${styles.active}` : styles.navMenu}>
             <li className={styles.navItem}>
               <NavLink

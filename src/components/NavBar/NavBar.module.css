@@ -19,22 +19,20 @@
 }
 
 .navLogo {
-  margin-top: 0px;
   cursor: pointer;
   text-decoration: none;
-  font-size: 12rem;
-  scale: 0.3;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center;
+  scale: 0.5;
+  margin: 0;
 }
 
-.navLogo .icon {
-  display: inline-block;
-  width: 3rem;
-  height: 3rem;
-  margin-left: 16px;
+.logo {
+  width: 100%;
+  height: auto;
+
 }
+
 
 .navMenu {
   display: flex;
@@ -79,18 +77,6 @@
 }
 
 
-
-
-.navIcon {
-  display: none;
-  color: black;
-}
-
-.navIcon .icon {
-  display: inline-block;
-  width: 2rem;
-  height: 2rem;
-}
 
 @media screen and (max-width: 960px) {
   .navMenu {
