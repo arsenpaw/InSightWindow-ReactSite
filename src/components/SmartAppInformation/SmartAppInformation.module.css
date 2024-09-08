@@ -14,11 +14,11 @@
 .windowTitle {
     display: flex;
     flex-direction: column;
-    align-content: flex-start;
-
+    text-align: end;
 
 }
-
 .windowDescription {
 
 }
+
+
