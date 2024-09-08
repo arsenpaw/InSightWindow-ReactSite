@@ -7,6 +7,7 @@ import Register from "./pages/Authorization/Register";
 import UserAccount from "./pages/UserAccount/UserAccount";
 import { AuthProvider } from "./contexts/AuthContext";
 import Demo from "./test/testComponent";
+import FooterComponent from "./components/FooterComponent/FooterComponent";
 
 function App() {
     return (
@@ -22,7 +23,9 @@ function App() {
                         <Route path="/userdetails" element={<UserAccount />} />
                         <Route path="/test" element={<Demo />} />
                     </Routes>
+                    <FooterComponent ></FooterComponent >
                 </div>
+
             </BrowserRouter>
         </AuthProvider>
     );

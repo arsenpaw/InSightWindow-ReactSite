@@ -1,0 +1,44 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #000;
+  min-height: 100vh;
+}
+
+.mainContent {
+  text-align: center;
+}
+
+.iconContainer {
+  scale: 0.5;
+}
+
+.icon {
+  display: inline-block;
+}
+
+.mainHeading {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.description {
+  font-size: 16px;
+  margin: 20px 0;
+}
+
+.learnMoreButton {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.learnMoreButton:hover {
+  background-color: #333;
+}
