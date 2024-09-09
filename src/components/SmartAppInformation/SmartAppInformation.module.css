@@ -2,6 +2,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: white;
+    border-radius: 50px;
+    height: 30rem;
+    margin-bottom: 10rem;
 }
 
 .phoneIcon {
@@ -18,7 +22,7 @@
 
 }
 .windowDescription {
-   padding-left: 40%;
+   padding-left: 30%;
 }
 
 
