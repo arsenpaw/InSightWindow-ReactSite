@@ -21,12 +21,10 @@ export const getCookie = name => {
 
 export const getJwtToken = () => {
     let token = getCookie('token')
-    console.log(token)
     return token
 }
 export const getRefreshToken = () => {
     let token = getCookie('refresh-token')
-    console.log(token)
     return token
 }
 export function setCookie(name,value,hours) {
@@ -47,7 +45,6 @@ export const AuthProvider = ({children}) => {
     const setAdminStatusFromJwtToken = () => {
         try {
             const decodedToken = jwtDecode(getCookie('token'));
-            console.log(decodedToken['role']);
             if (decodedToken['role'] === "Admin") {
                 setIsAdmin(true);
             } else {
@@ -79,7 +76,6 @@ export const AuthProvider = ({children}) => {
     const refreshAccessToken = async () => {
         try {
             const body = new RefreshTokenRequest(getJwtToken(),getRefreshToken())
-            console.log(body)
             const response = await fetch(`${process.env.REACT_APP_LINK}/api/Auth/RefreshToken`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},

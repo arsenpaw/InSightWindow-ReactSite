@@ -15,8 +15,6 @@ function Register() {
     async function handleSubmit(event) {
         event.preventDefault();
         let userLogin = new UserRegisterDto(email, password, firstName, lastName);
-        console.log('Email:', email);
-        console.log('Password:', password);
 
         const requestOptions = {
             method: 'POST',

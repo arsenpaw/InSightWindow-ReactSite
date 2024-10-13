@@ -54,7 +54,6 @@ export default function UserPanel() {
             });
 
             if (response.status === 200) {
-                console.log(`Device added: ${addingDevice}`);
                 setAddDevice("");
                 fetchUserDevices();
             } else {
