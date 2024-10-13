@@ -1,6 +1,7 @@
 import React, {createContext, useEffect, useState} from 'react';
 import {jwtDecode} from "jwt-decode";
 import {RefreshTokenRequest} from "../models/RefreshTokenRequest";
+import {SlBookOpen} from "react-icons/sl";
 
 export function deleteAllCookies() {
     document.cookie.split(';').forEach(cookie => {
@@ -46,8 +47,8 @@ export const AuthProvider = ({children}) => {
     const setAdminStatusFromJwtToken = () => {
         try {
             const decodedToken = jwtDecode(getCookie('token'));
-            const roleClaim = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
-            if (decodedToken[roleClaim] === "Admin") {
+            console.log(decodedToken['role']);
+            if (decodedToken['role'] === "Admin") {
                 setIsAdmin(true);
             } else {
                 setIsAdmin(false);
@@ -96,7 +97,7 @@ export const AuthProvider = ({children}) => {
 
             }
         } catch (e) {
-            console.log(e);
+            console.error(e);
         }
 
     };
