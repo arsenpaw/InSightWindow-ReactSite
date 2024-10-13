@@ -1,7 +1,6 @@
 import React, {createContext, useEffect, useState} from 'react';
 import {jwtDecode} from "jwt-decode";
 import {RefreshTokenRequest} from "../models/RefreshTokenRequest";
-import {SlBookOpen} from "react-icons/sl";
 
 export function deleteAllCookies() {
     document.cookie.split(';').forEach(cookie => {
