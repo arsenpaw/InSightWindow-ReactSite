@@ -15,8 +15,7 @@ function Login() {
     async function handleSubmit(event) {
         event.preventDefault();
         let userLogin = new UserLoginDto(email, password);
-        console.log('Email:', email);
-        console.log('Password:', password);
+
 
         const requestOptions = {
             method: 'POST',

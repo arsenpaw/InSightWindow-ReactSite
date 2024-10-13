@@ -1,5 +1,6 @@
 import React, {createContext, useEffect, useState} from 'react';
 import {jwtDecode} from "jwt-decode";
+import {RefreshTokenRequest} from "../models/RefreshTokenRequest";
 
 export function deleteAllCookies() {
     document.cookie.split(';').forEach(cookie => {
@@ -16,6 +17,15 @@ export const getCookie = name => {
     }
     return null;
 };
+
+export const getJwtToken = () => {
+    let token = getCookie('token')
+    return token
+}
+export const getRefreshToken = () => {
+    let token = getCookie('refresh-token')
+    return token
+}
 export function setCookie(name,value,hours) {
     var expires = "";
     if (hours) {
@@ -34,8 +44,7 @@ export const AuthProvider = ({children}) => {
     const setAdminStatusFromJwtToken = () => {
         try {
             const decodedToken = jwtDecode(getCookie('token'));
-            const roleClaim = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
-            if (decodedToken[roleClaim] === "Admin") {
+            if (decodedToken['role'] === "Admin") {
                 setIsAdmin(true);
             } else {
                 setIsAdmin(false);
@@ -57,32 +66,33 @@ export const AuthProvider = ({children}) => {
         setAdminStatusFromJwtToken();
     }, [isLoggedIn]);
     useEffect(() => {
-        const refreshToken = getCookie('refresh-token');
+        const refreshToken = getRefreshToken();
         if (refreshToken) {
-            refreshAccessToken(refreshToken);
+            refreshAccessToken();
         }
     }, []);
 
-    const refreshAccessToken = async (refreshToken) => {
+    const refreshAccessToken = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_LINK}/api/Auth/refresh-tokens`, {
+            const body = new RefreshTokenRequest(getJwtToken(),getRefreshToken())
+            const response = await fetch(`${process.env.REACT_APP_LINK}/api/Auth/RefreshToken`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'refresh-token': refreshToken,
-                },
-                credentials: "include",
+                headers: {'Content-Type': 'application/json'},
+                credentials: 'include',
+                body:JSON.stringify(body)
             })
             if (response.ok) {
-                setCookie('token', response.headers.get('Token'),process.env.TOKEN_DEADLINE);
-                setCookie('refresh-token', response.headers.get('Refresh-Token'),process.env.REFRESH_TOKEN_DEADLINE);
+                const responseData = await response.json();
+
+                setCookie('token', responseData.accessToken,process.env.TOKEN_DEADLINE);
+                setCookie('refresh-token',responseData.refreshToken,process.env.REFRESH_TOKEN_DEADLINE);
                 setIsLoggedIn(true);
             } else {
                 setIsLoggedIn(false);
 
             }
         } catch (e) {
-            console.log(e);
+            console.error(e);
         }
 
     };
