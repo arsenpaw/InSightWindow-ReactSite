@@ -7,7 +7,7 @@ import React from "react";
 export default function StartupInfo() {
     return (
         <>
-             <Row className={styles.mainContent}>
+            <Row className={styles.mainContent}>
                 <Col className={styles.iconContainer}>
                     <div className={styles.icon}>
                         <img src={imgLogo} alt="Logo"/>

@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import classNames from "classnames";
 import styles from "./NavBar.module.css"; // Import the CSS module
 import axIcon from "../../assets/ax2.png";
+import menuIcon from "../../assets/menuIcon.svg";
 import { AuthContext } from "../../contexts/AuthContext";
 
 function NavBar() {
@@ -15,7 +16,7 @@ function NavBar() {
       <nav className={styles.navbar}>
         <NavLink exact to="/" className={styles.navLogo}>
             <img src={axIcon} alt="ax2" className={styles.logo}/>
-          </NavLink>
+        </NavLink>
         <div className={styles.navContainer}>
 
           <ul className={click ? `${styles.navMenu} ${styles.active}` : styles.navMenu}>
@@ -68,9 +69,11 @@ function NavBar() {
               </NavLink>
             </li>
           </ul>
-          <div className={styles.navIcon} onClick={handleClick}>
-            <span className={styles.icon}></span>
-          </div>
+
+            <NavLink exact to="/" className={styles.navBurger} onClick={handleClick}>
+              <img src={menuIcon} alt="menu" className={styles.navIcon}/>
+            </NavLink>
+
         </div>
       </nav>
     </>

@@ -1,5 +1,7 @@
 .userDevices {
     margin-left: 290px; /* mb fix latter */
+    margin-bottom: 60px;
+    margin-right: 20px;
     padding: 40px;
     display: flex;
     flex-direction: column;
@@ -9,8 +11,9 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     min-height: calc(100vh - 100px);
-    width: 80%;
+    width: 78%;
     border-radius: 20px;
+    border: 2px solid #ddd;
 }
 
 .userDevices h2 {

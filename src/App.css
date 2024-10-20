@@ -7,9 +7,29 @@ body {
   background-color: #b5fac7;
 }
 
-.pages {
+@media (min-width: 1280px) {
+  .container {
+    max-width: 100%;
+  }
+}
 
+@media (min-width: 1024px) {
+  .container {
+    max-width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 100%;
+  }
+}
+@media (min-width: 640px) {
+  .container {
+    max-width: 100%;
+  }
+}
 
-
-
+.container {
+  padding-left: 5%;
+  padding-right: 5%;
 }

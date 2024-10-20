@@ -90,9 +90,9 @@ export default function UserPanel() {
                 </div>
             </div>
             <div className={styles.deleteAccountContainer}>
-                <h3>Delete Account</h3>
+                <h3>Delete Account?</h3>
                 <button className={styles.deleteAccountButton} onClick={deleteAccount}>
-                    Delete Account
+                    Yes, please
                 </button>
             </div>
             {reg.isAdmin && (
