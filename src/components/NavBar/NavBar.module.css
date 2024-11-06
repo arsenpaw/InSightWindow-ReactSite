@@ -7,6 +7,10 @@
   z-index: 10;
 }
 
+.navIcon {
+  display: none;
+}
+
 .navContainer {
   display: flex;
   justify-content:end;
@@ -54,19 +58,6 @@
   font-weight: bold;
   border-radius: 15px;
 }
-.navItem {
-  line-height: 40px;
-  margin-right: 1rem;
-}
-
-.navItem:after {
-  content: "";
-  display: block;
-  height: 3px;
-  width: 0px;
-  background: transparent;
-  transition: width 0.7s ease, background-color 0.2s ease-in-out;
-}
 
 .navItem:hover:after {
   width: 100%;
@@ -74,49 +65,20 @@
 
 }
 
-@media screen and (min-width: 960px) {
-  .navBurger{
+.navBurger{
     display: none;
-  }
   }
 
 @media screen and (max-width: 960px) {
-  .navMenu {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    position: absolute;
-    top: 80px;
-    right: -110%;
-    opacity: 1;
-    transition: all 0.5s ease;
+  .navLogo {
+    display: none;
   }
 
-  .navMenu.active {
-    background-color: #535f8c;
-    left: 0px;
-    opacity: 1;
-    transition: all 0.5s ease;
-    z-index: 1;
+  .navbar {
+    background-color: rgb(132, 149, 220);
   }
 
-  .navItem .active {
-    color: white;
-    border: none;
-  }
-
-  .navLinks {
-    padding: 1.5rem;
-    width: 92%;
-    display: table;
-  }
-
-  .navLogo .icon {
-    width: 2rem;
-    height: 2rem;
-  }
-
-  .navIcon {
+  .navBurger {
     display: block;
     position: absolute;
     top: 50%;
@@ -126,5 +88,50 @@
     height: 2rem;
     cursor: pointer;
     color: black;
+  }
+
+  .navMenu {
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 80px;
+    display: none;
+    align-items: center;
+  }
+
+  .navMenu.active {
+    background-color: rgb(132, 149, 220);
+    left: 0;
+    right: 0;
+    display: flex;
+    z-index: 1;
+  }
+
+  .navItem {
+    width: 80%;
+    text-align: center;
+  }
+
+  .navItem .active {
+    color: white;
+    border: none;
+  }
+
+  .navLinks {
+    padding: 1.5rem;
+    width: 100%;
+    display: table;
+    text-align: center;
+  }
+
+  .navLogo .icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .navIcon {
+    display: flex;
+    width: 50%;
+    height: auto;
   }
 }

@@ -1,28 +1,45 @@
+
 .container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     background-color: white;
     border-radius: 50px;
     height: 30rem;
-    margin-bottom: 10rem;
+    max-width: 1028px; /* Максимальна ширина */
+    width: 100%; /* Займає 100% ширини екрану, поки не досягне max-width */
+    margin: 0 auto 10rem auto; /* Центрує контейнер */
+    padding: 1rem;
+    text-align: left;
 }
 
 .phoneIcon {
     align-content: flex-end;
-    scale: 60%;
-    height: auto;
+    scale: 130%;
     max-width: 100%;
+    margin-left: 2rem;
 }
 
 .windowTitle {
     display: flex;
     flex-direction: column;
-    text-align: end;
-
-}
-.windowDescription {
-   padding-left: 30%;
+    align-items: center;
 }
 
+@media screen and (max-width: 740px) {
+    .windowTitle {
+        font-size: 23px;
+    }
 
+    .phoneIcon {
+        scale: 90%;
+        margin-top: 5rem;
+        margin-left: 0;
+
+    }
+
+    .container {
+        height: auto;
+        padding: 2rem;
+        flex-direction: column;
+    }
+}
