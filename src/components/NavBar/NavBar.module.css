@@ -96,7 +96,7 @@
     position: absolute;
     top: 80px;
     display: none;
-    align-items: center; /* Center items in the navMenu */
+    align-items: center;
   }
 
   .navMenu.active {
@@ -108,8 +108,8 @@
   }
 
   .navItem {
-    width: 80%; /* Make nav items take full width */
-    text-align: center; /* Center text within each item */
+    width: 80%;
+    text-align: center;
   }
 
   .navItem .active {
@@ -119,9 +119,9 @@
 
   .navLinks {
     padding: 1.5rem;
-    width: 100%; /* Make nav links take full width */
+    width: 100%;
     display: table;
-    text-align: center; /* Center each link's text */
+    text-align: center;
   }
 
   .navLogo .icon {

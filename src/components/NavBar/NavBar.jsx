@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import classNames from "classnames";
-import styles from "./NavBar.module.css"; // Import the CSS module
+import styles from "./NavBar.module.css";
 import axIcon from "../../assets/ax2.png";
 import menuIcon from "../../assets/menuIcon.svg";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -64,7 +64,6 @@ function NavBar() {
             </li>
           </ul>
 
-          {/* Updated burger icon to toggle without redirecting */}
           <div>
             <img src={axIcon} alt="ax2" className={styles.navIcon}/>
           </div>
