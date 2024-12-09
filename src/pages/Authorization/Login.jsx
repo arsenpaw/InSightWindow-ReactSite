@@ -26,20 +26,25 @@ function Login() {
         };
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_LINK}/api/Auth/login`, requestOptions);
-            if (response.ok) {
-                alert('Authorization successful:', response.status);
-                setCookie('token', response.headers.get('Token'),process.env.TOKEN_DEADLINE);
-                setCookie('refresh-token', response.headers.get('Refresh-Token'),process.env.REFRESH_TOKEN_DEADLINE);
+                const response = await fetch(`${process.env.REACT_APP_LINK}/api/Auth/login`, requestOptions);
 
-                login();
-                navManager("/userdetails")
-            } else {
-                alert('Authorization failed:', response.status);
+                if (response.ok) {
+                    alert('Authorization successful', response.status);
+                    setCookie('token', response.headers.get('Token'), process.env.TOKEN_DEADLINE);
+                    setCookie('refresh-token', response.headers.get('Refresh-Token'), process.env.REFRESH_TOKEN_DEADLINE);
+
+                    login();
+                    navManager("/userdetails");
+                } else {
+                    const errorDetails = await response.json().catch(() => null); // Обробка JSON або null
+                    const errorMessage = errorDetails?.message || `Error ${response.status}: ${response.statusText}`;
+
+                    alert(`Authorization failed: ${errorMessage} (${response.status})`);
+                }
+            } catch (error) {
+                console.error('An error occurred:', error);
+                alert('An unexpected error occurred. Please try again later.');
             }
-        } catch (error) {
-            console.error('An error occurred:', error);
-        }
     }
 
     return (
