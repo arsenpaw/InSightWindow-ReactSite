@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import styles from './Login.module.css';
 import imgLogo from '../../assets/ax2.png';
 import { UserRegisterDto } from "../../models/UserRegisterDto";
-import {Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import apiClient from "../../apiClient";
 
 function Register() {
     const [email, setEmail] = useState('');
@@ -14,27 +15,24 @@ function Register() {
 
     async function handleSubmit(event) {
         event.preventDefault();
-        let userLogin = new UserRegisterDto(email, password, firstName, lastName);
-
-        const requestOptions = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            credentials: 'include',
-            body: JSON.stringify(userLogin)
-        };
+        let userRegister = new UserRegisterDto(email, password, firstName, lastName);
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_LINK}/api/Auth/create`, requestOptions);
-            if (response.ok) {
-                alert('Registration successful:', response.status);
+            const response = await apiClient.post("/auth/create", userRegister);
+
+            if (response.status === 200) {
+                alert('Registration successful!');
                 navManager("/login");
             } else if (response.status === 409) {
                 alert("Email has already been occupied");
-            } else {
-                alert('Registration failed:', response.status);
             }
         } catch (error) {
-            console.error('An error occurred:', error);
+            if (error.response) {
+                alert(`Registration failed: ${error.response.data.message} (Status: ${error.response.status})`);
+            } else {
+                alert(`Registration failed: ${error.message}`);
+            }
+            console.error('Error during registration:', error);
         }
     }
 
@@ -42,7 +40,7 @@ function Register() {
         <div className={styles.loginContainer}>
             <div className={styles.loginBox}>
                 <div className={styles.logo}>
-                    <img src={imgLogo} alt="Logo"/>
+                    <img src={imgLogo} alt="Logo" />
                 </div>
                 <form onSubmit={handleSubmit} className={styles.loginForm}>
                     <div className={styles.formGroup}>
@@ -110,9 +108,7 @@ function Register() {
                     <button type="submit" className={styles.loginButton}>Submit</button>
                 </form>
                 <div className={styles.links}>
-                    <Link to="/Login">Register</Link>
-
-
+                    <Link to="/login">Login</Link>
                 </div>
             </div>
         </div>
