@@ -1,23 +1,17 @@
 import styles from "../UserDevice/UserDevices.module.css";
 import React, { useContext } from "react";
-import { getCookie } from "../../contexts/AuthContext";
 import { DeviceContext } from "../../contexts/DeviceContext";
+import apiClient from "../../apiClient";
 
 export function Device(props) {
     const { devices, setDevices } = useContext(DeviceContext);
+
     const removeDevice = async (deviceId) => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_LINK}/api/UsersDb/UnbindFrom?deviceId=${deviceId}`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${getCookie('token')}`,
-                    'Content-Type': 'application/json',
-                },
-                credentials: 'include',
-            });
+            const response = await apiClient.post(`/UsersDb/UnbindFrom?deviceId=${deviceId}`);
 
-            if (response.ok) {
-                const responseData = await response.json();
+            if (response.status === 200) {
+                const responseData = response.data;
 
                 if (!responseData || responseData.length === 0) {
                     alert('Device list is empty');
@@ -32,8 +26,12 @@ export function Device(props) {
                 console.error('Error removing device:', response.status);
             }
         } catch (error) {
+            if (error.response) {
+                alert(`Error removing device: ${error.response.data.message} (Status: ${error.response.status})`);
+            } else {
+                alert('An unexpected error occurred while removing the device.');
+            }
             console.error('Error removing device:', error);
-            alert('An unexpected error occurred while removing the device.');
         }
     };
 

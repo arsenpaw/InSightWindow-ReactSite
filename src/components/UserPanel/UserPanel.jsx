@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import imgLogo from "../../assets/axIcon.png";
-import styles from "./UserPanel.module.css"; // Import CSS Module
-import { AuthContext, getCookie } from "../../contexts/AuthContext";
+import styles from "./UserPanel.module.css";
+import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import apiClient from "../../apiClient";
 import { DeviceContext } from "../../contexts/DeviceContext";
 
 export default function UserPanel() {
@@ -19,13 +19,7 @@ export default function UserPanel() {
             return;
         }
         try {
-            const response = await axios.delete(`${process.env.REACT_APP_LINK}/api/UsersDb/concreteUser`, {
-                method: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${getCookie('token')}`, 'Content-Type': 'application/json',
-                },
-                credentials: 'include',
-            });
+            const response = await apiClient.delete("/UsersDb/concreteUser");
 
             if (response.status === 200) {
                 reg.logout();
@@ -35,33 +29,29 @@ export default function UserPanel() {
                 alert('Delete account failed');
             }
         } catch (error) {
-            if (error.response.status === 409) {
+            if (error.response?.status === 409) {
                 alert('Account has devices, please remove them first');
+            } else {
+                alert('An error occurred while trying to delete the account.');
             }
             console.error('An error occurred:', error);
-            alert('An error occurred while trying to delete the account.');
         }
     };
 
     const addDevice = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_LINK}/api/UsersDb/BindTo?deviceId=${addingDevice}`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${getCookie('token')}`, 'Content-Type': 'application/json',
-                },
-                credentials: 'include',
-            });
+            const response = await apiClient.post(`/UsersDb/BindTo?deviceId=${addingDevice}`);
 
             if (response.status === 200) {
                 setAddDevice("");
                 fetchUserDevices();
+                alert('Device added successfully');
             } else {
                 alert('Adding device failed');
             }
         } catch (error) {
-            console.error('An error occurred:', error);
             alert('An error occurred while trying to add device to the account.');
+            console.error('An error occurred:', error);
         }
     };
 
@@ -96,12 +86,14 @@ export default function UserPanel() {
                 </button>
             </div>
             {reg.isAdmin && (
-            <div >
                 <div>
-                    <button className={styles.deleteAccountButton} onClick={() =>{}}>ADMIN PANEL</button>
+                    <div>
+                        <button className={styles.deleteAccountButton} onClick={() => {}}>
+                            ADMIN PANEL
+                        </button>
+                    </div>
                 </div>
-            </div>
-        )}
+            )}
         </div>
     );
 }

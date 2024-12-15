@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
-import styles from './Login.module.css'; // Import the CSS module
+import styles from './Login.module.css';
 import imgLogo from '../../assets/ax2.png';
 import { UserLoginDto } from "../../models/UserLoginDto";
-import {Link, useNavigate} from 'react-router-dom';
-import { AuthContext,setCookie } from "../../contexts/AuthContext";
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext, setCookie } from "../../contexts/AuthContext";
+import apiClient from "../../apiClient";
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -16,42 +17,30 @@ function Login() {
         event.preventDefault();
         let userLogin = new UserLoginDto(email, password);
 
-
-        const requestOptions = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            credentials: 'include',
-            withCredentials: true,
-            body: JSON.stringify(userLogin)
-        };
-
         try {
-                const response = await fetch(`${process.env.REACT_APP_LINK}/api/Auth/login`, requestOptions);
+            const response = await apiClient.post("/auth/login", userLogin);
 
-                if (response.ok) {
-                    alert('Authorization successful', response.status);
-                    setCookie('token', response.headers.get('Token'), process.env.TOKEN_DEADLINE);
-                    setCookie('refresh-token', response.headers.get('Refresh-Token'), process.env.REFRESH_TOKEN_DEADLINE);
+            setCookie('token', response.headers['token'], process.env.TOKEN_DEADLINE);
+            setCookie('refresh-token', response.headers['refresh-token'], process.env.REFRESH_TOKEN_DEADLINE);
 
-                    login();
-                    navManager("/userdetails");
-                } else {
-                    const errorDetails = await response.json().catch(() => null); // Обробка JSON або null
-                    const errorMessage = errorDetails?.message || `Error ${response.status}: ${response.statusText}`;
-
-                    alert(`Authorization failed: ${errorMessage} (${response.status})`);
-                }
-            } catch (error) {
-                console.error('An error occurred:', error);
-                alert('An unexpected error occurred. Please try again later.');
+            login();
+            navManager("/userdetails");
+            alert('Authorization successful!');
+        } catch (error) {
+            if (error.response) {
+                alert(`Authorization failed: ${error.response.data.message} (Status: ${error.response.status})`);
+            } else {
+                alert(`Authorization failed: ${error.message}`);
             }
+            console.error('Error during login:', error);
+        }
     }
 
     return (
         <div className={styles.loginContainer}>
             <div className={styles.loginBox}>
                 <div className={styles.logo}>
-                    <img src={imgLogo} alt="Logo"/>
+                    <img src={imgLogo} alt="Logo" />
                 </div>
                 <form onSubmit={handleSubmit} className={styles.loginForm}>
                     <div className={styles.formGroup}>
